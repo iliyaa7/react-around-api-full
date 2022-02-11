@@ -1,7 +1,24 @@
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 const CustomError = new Error('No user found with that id');
 CustomError.statusCode = 404;
+
+module.exports.login = (req, res) => {
+  const { email, password } = req.body;
+  const { NODE_ENV, JWT_SECRET } = process.env;
+
+  User.findUserByCredentials(email, password)
+    .then((user) => {
+      res.send({ token: jwt.sign({ userId: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }) });
+    })
+    .catch((err) => {
+      res
+        .status(401)
+        .send({ message: err.message });
+    });
+};
 
 module.exports.getUsers = (req, res) => {
   User.find({})
@@ -32,10 +49,14 @@ module.exports.createUser = (req, res) => {
   const {
     email, password, name, about, avatar,
   } = req.body;
-
-  User.create({
-    email, password, name, about, avatar,
-  })
+  bcrypt.hash(password, 10)
+    .then((hash) => User.create({
+      email,
+      password: hash,
+      name,
+      about,
+      avatar,
+    }))
     .then((user) => res.send({ message: 'user created succefuly', createdUser: user }))
     .catch((err) => {
       if (err.name === 'ValidationError') {

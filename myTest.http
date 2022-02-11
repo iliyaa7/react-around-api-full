@@ -31,15 +31,25 @@ get http://localhost:3000/users/61da36e4b35ce358a9805940
 
 ###
 
-post http://localhost:3000/users
+post http://localhost:3000/signup
 Content-Type: application/json
 
 {
-  "email": "asfsfa@gmail.com",
-  "password": "afsasf232",
-  "name": "test user 4",
-  "about": "test 4",
+  "email": "aasfsfaa@gmail.com",
+  "password": "afsasf23d2",
+  "name": "ii",
+  "about": "add",
   "avatar": "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+}
+
+###
+
+post http://localhost:3000/signin
+Content-Type: application/json
+
+{
+  "email": "aasfsfa@gmail.com",
+  "password": "afsasf23d2"
 }
 
 ###

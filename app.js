@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cardsRoute = require('./routes/cards');
 const usersRoute = require('./routes/users');
+require('dotenv').config();
 
 const app = express();
 

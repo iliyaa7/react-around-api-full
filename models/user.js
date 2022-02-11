@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
@@ -23,19 +24,19 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
-    required: true,
+    default: 'Iliya',
     minlength: 2,
     maxlength: 30,
   },
   about: {
     type: String,
-    required: true,
+    default: 'Guitar teacher',
     minlength: 2,
     maxlength: 30,
   },
   avatar: {
     type: String,
-    required: true,
+    default: 'https://code.s3.yandex.net/web-code/bald-mountains.jpg',
     validate: {
       validator(v) {
         return /^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(v);
@@ -44,5 +45,23 @@ const userSchema = new Schema({
     },
   },
 });
+
+userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
+  return this.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        throw new Error('Incorrect email or password');
+      }
+
+      return bcrypt.compare(password, user.password)
+        .then((matched) => {
+          if (!matched) {
+            throw new Error('Incorrect email or password');
+          }
+
+          return user;
+        });
+    });
+};
 
 module.exports = mongoose.models.user || mongoose.model('user', userSchema);
