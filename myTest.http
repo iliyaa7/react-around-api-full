@@ -4,6 +4,7 @@ get http://localhost:3000/cards
 
 post http://localhost:3000/cards
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjA2YWU0NTVhNDk3NGE0ZmVjZDlmYmQiLCJpYXQiOjE2NDQ2MTQ0OTAsImV4cCI6MTY0NTIxOTI5MH0.MM3VInKDHIWF0naR6zS_JM907UIWRtb6Cx414f38McY
 
 {
   "name": "test card 1",
