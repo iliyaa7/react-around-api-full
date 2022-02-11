@@ -1,0 +1,62 @@
+get http://localhost:3000/cards
+
+###
+
+post http://localhost:3000/cards
+Content-Type: application/json
+
+{
+  "name": "test card 1",
+  "link": "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+}
+###
+
+delete http://localhost:3000/cards/61da4ad66dca477373aacd02
+
+###
+
+put http://localhost:3000/cards/61da4afdce30b446c1a26510/likes
+
+###
+
+delete http://localhost:3000/cards/61da4afdce30b446c1a26510/likes
+
+###
+
+get http://localhost:3000/users
+
+###
+
+get http://localhost:3000/users/61da36e4b35ce358a9805940
+
+###
+
+post http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "asfsfa@gmail.com",
+  "password": "afsasf232",
+  "name": "test user 4",
+  "about": "test 4",
+  "avatar": "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+}
+
+###
+
+patch http://localhost:3000/users/me/61da36e4b35ce358a9805943
+Content-Type: application/json
+
+{
+  "name": "patched user 5",
+  "about": "patched 4"
+}
+
+###
+
+patch http://localhost:3000/users/me/avatar/61da36e4b35ce358a9805940
+Content-Type: application/json
+
+{
+  "avatar": "https://code.s3.yandex.net/web-code/ccccc.jpg"
+}
