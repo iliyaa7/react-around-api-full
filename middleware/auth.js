@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer')) {
     return res
-      .status(401)
+      .status(403)
       .send({ message: 'Authorization required' });
   }
   const token = authorization.replace('Bearer ', '');
@@ -15,9 +15,10 @@ module.exports = (req, res, next) => {
     payload = jwt.verify(token, JWT_SECRET || 'dev-secret');
   } catch (err) {
     return res
-      .status(401)
+      .status(403)
       .send({ message: 'Authorization required' });
   }
-  req.user = payload.userId;
+  req.user = payload;
+
   return next();
 };

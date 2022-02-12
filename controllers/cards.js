@@ -11,7 +11,7 @@ module.exports.getCards = (req, res) => {
 
 module.exports.createCard = (req, res) => {
   const { name, link } = req.body;
-  const owner = req.user;
+  const owner = req.user._id;
   Card.create({ name, link, owner })
     .then((card) => res.send({ card }))
     .catch((err) => {
@@ -26,16 +26,21 @@ module.exports.createCard = (req, res) => {
 };
 
 module.exports.deleteCard = (req, res) => {
-  Card.findByIdAndRemove(req.params.cardId)
-    .orFail(() => {
-      throw CustomError;
+  Card.isOwensCard(req.user._id, req.params.cardId)
+    .then((card) => {
+      Card.findByIdAndRemove(card._id)
+        .orFail(() => {
+          throw CustomError;
+        })
+        .then((deletedCard) => res.send({ message: 'your card has been deleted', deletedCard }));
     })
-    .then((card) => res.send({ message: 'your card has been deleted', deletedCard: card }))
     .catch((err) => {
       if (err.name === 'CastError') {
         res.status(400).send({ error: 'invalid card id' });
       } else if (err.statusCode === 404) {
         res.status(404).send({ message: err.message });
+      } else if (err.statusCode === 403) {
+        res.status(403).send({ message: err.message });
       } else {
         res.status(500).send({ message: err.message || 'internal server error' });
       }

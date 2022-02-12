@@ -11,7 +11,7 @@ module.exports.login = (req, res) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      res.send({ token: jwt.sign({ userId: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }) });
+      res.send({ token: jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }) });
     })
     .catch((err) => {
       res
@@ -26,8 +26,8 @@ module.exports.getUsers = (req, res) => {
     .catch((err) => res.status(err.statusCode).send({ message: err.message }));
 };
 
-module.exports.getUser = (req, res) => {
-  User.findById(req.params.id)
+module.exports.getCurrentUser = (req, res) => {
+  User.findById(req.user._id)
     .orFail(() => {
       throw CustomError;
     })
@@ -75,7 +75,7 @@ module.exports.updateUserProfile = (req, res) => {
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(
-    req.params.id,
+    req.user._id,
     { name, about },
     {
       new: true, runValidators: true,
@@ -102,7 +102,7 @@ module.exports.updateUserAvatar = (req, res) => {
   const { avatar } = req.body;
 
   User.findByIdAndUpdate(
-    req.params.id,
+    req.user._id,
     { avatar },
     {
       new: true,

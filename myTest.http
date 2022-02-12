@@ -1,45 +1,11 @@
-get http://localhost:3000/cards
-
-###
-
-post http://localhost:3000/cards
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjA2YWU0NTVhNDk3NGE0ZmVjZDlmYmQiLCJpYXQiOjE2NDQ2MTQ0OTAsImV4cCI6MTY0NTIxOTI5MH0.MM3VInKDHIWF0naR6zS_JM907UIWRtb6Cx414f38McY
-
-{
-  "name": "test card 1",
-  "link": "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-}
-###
-
-delete http://localhost:3000/cards/61da4ad66dca477373aacd02
-
-###
-
-put http://localhost:3000/cards/61da4afdce30b446c1a26510/likes
-
-###
-
-delete http://localhost:3000/cards/61da4afdce30b446c1a26510/likes
-
-###
-
-get http://localhost:3000/users
-
-###
-
-get http://localhost:3000/users/61da36e4b35ce358a9805940
-
-###
-
 post http://localhost:3000/signup
 Content-Type: application/json
 
 {
-  "email": "aasfsfaa@gmail.com",
-  "password": "afsasf23d2",
-  "name": "ii",
-  "about": "add",
+  "email": "iliyaaa7@gmail.com",
+  "password": "5792",
+  "name": "iliya",
+  "about": "gomon",
   "avatar": "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
 }
 
@@ -49,14 +15,55 @@ post http://localhost:3000/signin
 Content-Type: application/json
 
 {
-  "email": "aasfsfa@gmail.com",
-  "password": "afsasf23d2"
+  "email": "iliyaaa7@gmail.com",
+  "password": "5792"
 }
 
 ###
 
-patch http://localhost:3000/users/me/61da36e4b35ce358a9805943
+get http://localhost:3000/cards
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA2YWU0NTVhNDk3NGE0ZmVjZDlmYmQiLCJpYXQiOjE2NDQ2NzM2NDMsImV4cCI6MTY0NTI3ODQ0M30.DHxrdYDESTURYD-rh_QsHZT_FJOskjQU061VO65ps7w
+
+###
+
+post http://localhost:3000/cards
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA2YWU0NTVhNDk3NGE0ZmVjZDlmYmQiLCJpYXQiOjE2NDQ2NzM2NDMsImV4cCI6MTY0NTI3ODQ0M30.DHxrdYDESTURYD-rh_QsHZT_FJOskjQU061VO65ps7w
+
+{
+  "name": "test card 1",
+  "link": "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+}
+###
+
+delete http://localhost:3000/cards/6207d2bdf66239f006fc9566
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ2NzQ2MTcsImV4cCI6MTY0NTI3OTQxN30.PuGih88WAmhq4VFRHX2GDBs5dz9aWHxb_e3nrB8goBw
+
+###
+
+put http://localhost:3000/cards/6207ce60d1bd1d4b9c0cbd4b/likes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ2NzQ2MTcsImV4cCI6MTY0NTI3OTQxN30.PuGih88WAmhq4VFRHX2GDBs5dz9aWHxb_e3nrB8goBw
+
+###
+
+delete http://localhost:3000/cards/6206dc9f8c221c4e13ecd1a1/likes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ2NzQ2MTcsImV4cCI6MTY0NTI3OTQxN30.PuGih88WAmhq4VFRHX2GDBs5dz9aWHxb_e3nrB8goBw
+
+###
+
+get http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA2YWU0NTVhNDk3NGE0ZmVjZDlmYmQiLCJpYXQiOjE2NDQ2NzM2NDMsImV4cCI6MTY0NTI3ODQ0M30.DHxrdYDESTURYD-rh_QsHZT_FJOskjQU061VO65ps7w
+
+###
+
+get http://localhost:3000/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ2NzQ2MTcsImV4cCI6MTY0NTI3OTQxN30.PuGih88WAmhq4VFRHX2GDBs5dz9aWHxb_e3nrB8goBw
+
+###
+
+patch http://localhost:3000/users/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ2NzQ2MTcsImV4cCI6MTY0NTI3OTQxN30.PuGih88WAmhq4VFRHX2GDBs5dz9aWHxb_e3nrB8goBw
 
 {
   "name": "patched user 5",
@@ -65,8 +72,9 @@ Content-Type: application/json
 
 ###
 
-patch http://localhost:3000/users/me/avatar/61da36e4b35ce358a9805940
+patch http://localhost:3000/users/me/avatar
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ2NzQ2MTcsImV4cCI6MTY0NTI3OTQxN30.PuGih88WAmhq4VFRHX2GDBs5dz9aWHxb_e3nrB8goBw
 
 {
   "avatar": "https://code.s3.yandex.net/web-code/ccccc.jpg"

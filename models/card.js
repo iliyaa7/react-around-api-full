@@ -33,4 +33,22 @@ const cardSchema = new mongoose.Schema({
   },
 });
 
+cardSchema.statics.isOwensCard = function isOwensCard(owner, _id) {
+  return this.findById({ _id })
+    .orFail(() => {
+      const CustomError = new Error('No card found with that id');
+      CustomError.statusCode = 404;
+      throw CustomError;
+    })
+    .then((card) => {
+      // Is there a build in mongoose method or a more elegant way of doing that?
+      if (JSON.stringify(card.owner).slice(1, -1) !== owner) {
+        const CustomError1 = new Error('You are not the owner of this card');
+        CustomError1.statusCode = 403;
+        throw CustomError1;
+      }
+      return card;
+    });
+};
+
 module.exports = mongoose.model('card', cardSchema);
