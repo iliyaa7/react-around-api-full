@@ -46,6 +46,7 @@ module.exports.getCurrentUser = (req, res) => {
 };
 
 module.exports.createUser = (req, res) => {
+  console.log('a');
   const {
     email, password, name, about, avatar,
   } = req.body;

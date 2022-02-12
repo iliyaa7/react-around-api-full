@@ -21,4 +21,3 @@ app.use('/', usersRoute);
 app.use((req, res) => res.status(404).send({ message: 'The requested resource was not found' }));
 
 app.listen(PORT);
-

@@ -21,6 +21,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 8,
+    select: false,
   },
   name: {
     type: String,
@@ -47,7 +48,7 @@ const userSchema = new Schema({
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
-  return this.findOne({ email })
+  return this.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
         throw new Error('Incorrect email or password');
