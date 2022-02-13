@@ -1,7 +1,8 @@
 const Card = require('../models/card');
+const NotFoundError = require('../errors/not-found-err');
+const InvalidDataError = require('../errors/invalid-data-err');
 
-const CustomError = new Error('No card found with that id');
-CustomError.statusCode = 404;
+const NotFoundCardError = new NotFoundError('No card found with that id');
 
 module.exports.getCards = (req, res) => {
   Card.find({})
@@ -9,45 +10,37 @@ module.exports.getCards = (req, res) => {
     .catch((err) => res.status(err.statusCode).send({ message: err.message }));
 };
 
-module.exports.createCard = (req, res) => {
+module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   const owner = req.user._id;
   Card.create({ name, link, owner })
     .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        res.status(400).send({ error: 'invalid data passed to the server' });
-      } else if (err.statusCode === 404) {
-        res.status(404).send({ message: err.message });
-      } else {
-        res.status(500).send({ message: err.message || 'internal server error' });
-      }
-    });
+        throw new InvalidDataError('invalid data passed to the server');
+      } throw err;
+    })
+    .catch(next);
 };
 
-module.exports.deleteCard = (req, res) => {
+module.exports.deleteCard = (req, res, next) => {
   Card.isOwensCard(req.user._id, req.params.cardId)
     .then((card) => {
       Card.findByIdAndRemove(card._id)
         .orFail(() => {
-          throw CustomError;
+          throw NotFoundCardError;
         })
         .then((deletedCard) => res.send({ deletedCard }));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        res.status(400).send({ error: 'invalid card id' });
-      } else if (err.statusCode === 404) {
-        res.status(404).send({ message: err.message });
-      } else if (err.statusCode === 403) {
-        res.status(403).send({ message: err.message });
-      } else {
-        res.status(500).send({ message: err.message || 'internal server error' });
-      }
-    });
+        throw new InvalidDataError('invalid card id');
+      } throw err;
+    })
+    .catch(next);
 };
 
-module.exports.likeCard = (req, res) => {
+module.exports.likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $addToSet: { likes: req.user._id } },
@@ -56,21 +49,18 @@ module.exports.likeCard = (req, res) => {
     },
   )
     .orFail(() => {
-      throw CustomError;
+      throw NotFoundCardError;
     })
     .then((updatedCard) => res.send(updatedCard))
     .catch((err) => {
       if (err.name === 'CastError') {
-        res.status(400).send({ error: 'invalid card id' });
-      } else if (err.statusCode === 404) {
-        res.status(404).send({ message: err.message });
-      } else {
-        res.status(500).send({ message: err.message || 'internal server error' });
-      }
-    });
+        throw new InvalidDataError('invalid card id');
+      } throw err;
+    })
+    .catch(next);
 };
 
-module.exports.dislikeCard = (req, res) => {
+module.exports.dislikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $pull: { likes: req.user._id } },
@@ -79,16 +69,13 @@ module.exports.dislikeCard = (req, res) => {
     },
   )
     .orFail(() => {
-      throw CustomError;
+      throw NotFoundCardError;
     })
     .then((updatedCard) => res.send(updatedCard))
     .catch((err) => {
       if (err.name === 'CastError') {
-        res.status(400).send({ error: 'invalid card id' });
-      } else if (err.statusCode === 404) {
-        res.status(404).send({ message: err.message });
-      } else {
-        res.status(500).send({ message: err.message || 'internal server error' });
-      }
-    });
+        throw new InvalidDataError('invalid card id');
+      } throw err;
+    })
+    .catch(next);
 };

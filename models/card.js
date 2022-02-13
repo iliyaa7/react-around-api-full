@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const NotFoundError = require('../errors/not-found-err');
 
 const cardSchema = new mongoose.Schema({
   name: {
@@ -36,16 +37,14 @@ const cardSchema = new mongoose.Schema({
 cardSchema.statics.isOwensCard = function isOwensCard(owner, _id) {
   return this.findById({ _id })
     .orFail(() => {
-      const CustomError = new Error('No card found with that id');
-      CustomError.statusCode = 404;
-      throw CustomError;
+      throw new NotFoundError('No card found with that id');
     })
     .then((card) => {
       // Is there a build in mongoose method or a more elegant way of doing that?
       if (JSON.stringify(card.owner).slice(1, -1) !== owner) {
-        const CustomError1 = new Error('You are not the owner of this card');
-        CustomError1.statusCode = 403;
-        throw CustomError1;
+        const CustomError = new Error('You are not the owner of this card');
+        CustomError.statusCode = 403;
+        throw CustomError;
       }
       return card;
     });
