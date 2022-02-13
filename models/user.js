@@ -30,13 +30,13 @@ const userSchema = new Schema({
     type: String,
     default: 'Iliya',
     minlength: 2,
-    maxlength: 30,
+    maxlength: 40,
   },
   about: {
     type: String,
     default: 'Guitar teacher',
     minlength: 2,
-    maxlength: 30,
+    maxlength: 50,
   },
   avatar: {
     type: String,
