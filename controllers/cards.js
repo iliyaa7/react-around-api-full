@@ -5,7 +5,7 @@ CustomError.statusCode = 404;
 
 module.exports.getCards = (req, res) => {
   Card.find({})
-    .then((cards) => res.send({ cards }))
+    .then((cards) => res.send(cards))
     .catch((err) => res.status(err.statusCode).send({ message: err.message }));
 };
 
@@ -13,7 +13,7 @@ module.exports.createCard = (req, res) => {
   const { name, link } = req.body;
   const owner = req.user._id;
   Card.create({ name, link, owner })
-    .then((card) => res.send({ card }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ error: 'invalid data passed to the server' });
@@ -32,7 +32,7 @@ module.exports.deleteCard = (req, res) => {
         .orFail(() => {
           throw CustomError;
         })
-        .then((deletedCard) => res.send({ message: 'your card has been deleted', deletedCard }));
+        .then((deletedCard) => res.send({ deletedCard }));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -58,7 +58,7 @@ module.exports.likeCard = (req, res) => {
     .orFail(() => {
       throw CustomError;
     })
-    .then((updatedCard) => res.send({ message: 'your like was succefuly added to the card', updatedCard }))
+    .then((updatedCard) => res.send(updatedCard))
     .catch((err) => {
       if (err.name === 'CastError') {
         res.status(400).send({ error: 'invalid card id' });
@@ -81,7 +81,7 @@ module.exports.dislikeCard = (req, res) => {
     .orFail(() => {
       throw CustomError;
     })
-    .then((updatedCard) => res.send({ message: 'your like was succefuly removed from the card', updatedCard }))
+    .then((updatedCard) => res.send(updatedCard))
     .catch((err) => {
       if (err.name === 'CastError') {
         res.status(400).send({ error: 'invalid card id' });

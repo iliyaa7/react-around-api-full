@@ -15,7 +15,7 @@ post http://localhost:3000/signin
 Content-Type: application/json
 
 {
-  "email": "iliyaaa7@gmail.com",
+  "email": "iliyaa7@gmail.com",
   "password": "5792"
 }
 
@@ -41,8 +41,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyN
 
 ###
 
-put http://localhost:3000/cards/6207ce60d1bd1d4b9c0cbd4b/likes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ2NzQ2MTcsImV4cCI6MTY0NTI3OTQxN30.PuGih88WAmhq4VFRHX2GDBs5dz9aWHxb_e3nrB8goBw
+put http://localhost:3000/cards/6207d2bdf66239f006fc9566/likes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA3YmUyNzEzODYxZjExZGMyOGVkOWEiLCJpYXQiOjE2NDQ3MTA0MjAsImV4cCI6MTY0NTMxNTIyMH0.ix6XDETbcnxN-f0SBpzLL97atNEsLCgRG50JLd7Cj5M
 
 ###
 

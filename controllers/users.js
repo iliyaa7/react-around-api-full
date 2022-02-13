@@ -31,7 +31,7 @@ module.exports.getCurrentUser = (req, res) => {
     .orFail(() => {
       throw CustomError;
     })
-    .then((user) => res.send({ requestedUser: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.statusCode === 400) {
         res.status(400).send({ message: err.message });
@@ -46,7 +46,6 @@ module.exports.getCurrentUser = (req, res) => {
 };
 
 module.exports.createUser = (req, res) => {
-  console.log('a');
   const {
     email, password, name, about, avatar,
   } = req.body;
@@ -85,7 +84,7 @@ module.exports.updateUserProfile = (req, res) => {
     .orFail(() => {
       throw CustomError;
     })
-    .then((updatedUser) => res.send({ message: 'user`s profile updated succefuly', updatedUser }))
+    .then((updatedUser) => res.send(updatedUser))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ error: 'invalid data passed to the server' });
@@ -113,7 +112,7 @@ module.exports.updateUserAvatar = (req, res) => {
     .orFail(() => {
       throw CustomError;
     })
-    .then((updatedUser) => res.send({ message: 'user`s avatar updated succefuly', updatedUser }))
+    .then((updatedUser) => res.send(updatedUser))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ error: 'invalid data passed to the server' });
