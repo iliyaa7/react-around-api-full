@@ -2,8 +2,8 @@ post http://localhost:3000/signup
 Content-Type: application/json
 
 {
-  "email": "iliyaaaaa@a7dasdasdsd.com",
-  "password": "57",
+  "email": "iliyaa7@gmail.com",
+  "password": "5792",
   "name": "iliya",
   "about": "gomon",
   "avatar": "https://code.s3.yandex.net/web-code/bald-mountains.jpg"

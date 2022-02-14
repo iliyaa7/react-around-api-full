@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5caf6c56.chunk.css",
+    "main.js": "/static/js/main.41787d65.chunk.js",
+    "main.js.map": "/static/js/main.41787d65.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a59c7e0f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a59c7e0f.js.map",
+    "static/js/2.411d38a5.chunk.js": "/static/js/2.411d38a5.chunk.js",
+    "static/js/2.411d38a5.chunk.js.map": "/static/js/2.411d38a5.chunk.js.map",
+    "static/js/3.5085e2f8.chunk.js": "/static/js/3.5085e2f8.chunk.js",
+    "static/js/3.5085e2f8.chunk.js.map": "/static/js/3.5085e2f8.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.5caf6c56.chunk.css.map": "/static/css/main.5caf6c56.chunk.css.map",
+    "static/js/2.411d38a5.chunk.js.LICENSE.txt": "/static/js/2.411d38a5.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/like-button_active.f8482d28.svg",
+    "static/media/Logo.c7581985.svg": "/static/media/Logo.c7581985.svg",
+    "static/media/batton-plus.bed8c136.svg": "/static/media/batton-plus.bed8c136.svg",
+    "static/media/batton-prof_edit.6c7bf054.svg": "/static/media/batton-prof_edit.6c7bf054.svg",
+    "static/media/failed-image.ba3097ce.jpg": "/static/media/failed-image.ba3097ce.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a59c7e0f.js",
+    "static/js/2.411d38a5.chunk.js",
+    "static/css/main.5caf6c56.chunk.css",
+    "static/js/main.41787d65.chunk.js"
+  ]
+}
