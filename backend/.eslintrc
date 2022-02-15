@@ -3,7 +3,8 @@
   "rules": {
     "no-underscore-dangle": "off",
     "no-useless-escape": "off",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+    "no-param-reassign": ["error", { "props": false }]
   }
 }
 

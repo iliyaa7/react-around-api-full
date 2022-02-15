@@ -19,13 +19,16 @@ module.exports.createUser = (req, res, next) => {
       about,
       avatar,
     }))
-    .then((user) => res.send({ message: 'user created succefuly', createdUser: user }))
+    .then((user) => {
+      user.password = undefined;
+      res.send({ message: 'user created succefuly', createdUser: user });
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         throw new InvalidDataError('invalid data passed to the server');
       } else if (err.code === 11000) {
         const UniqeEmailError = new Error('User with that email already exists');
-        UniqeEmailError.statusCode = 422;
+        UniqeEmailError.statusCode = 409;
         throw UniqeEmailError;
       } throw err;
     })

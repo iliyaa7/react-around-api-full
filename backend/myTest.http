@@ -2,7 +2,7 @@ post http://localhost:3000/signup
 Content-Type: application/json
 
 {
-  "email": "iliyaa7@gmail.com",
+  "email": "iliyaabccccc7@gmail.com",
   "password": "5792",
   "name": "iliya",
   "about": "gomon",
@@ -36,7 +36,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA2YWU0N
 }
 ###
 
-delete http://localhost:3000/cards/62095d65ad2ba223e86c2cf8
+delete http://localhost:3000/cards/62095d65ad2ba223e86c2cf!
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA2YWU0NTVhNDk3NGE0ZmVjZDlmYmQiLCJpYXQiOjE2NDQ2NzM2NDMsImV4cCI6MTY0NTI3ODQ0M30.DHxrdYDESTURYD-rh_QsHZT_FJOskjQU061VO65ps7w
 
 ###
