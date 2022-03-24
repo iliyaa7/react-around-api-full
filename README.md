@@ -6,6 +6,7 @@ The server side was written in Node.js (express.js) and used MongoDB as the data
 This Rest API contains middlewares, controllers. custom validators, auth via jwt token and error handlers.
 
 The client side application was written in React and used Routes, Context for managing states, protected routes, auth via jwt token and local storage for storing this token.
+The project was deployed to a virtual machine On azure microsoft cloud.
 
 In this web application the registered user can create or delete a post (a photo of a place he likes), liking other users posts, editing his own data (user  name, about section and an avatar).
 
